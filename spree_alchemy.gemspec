@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["tyleresmart@gmail.com"]
   gem.description   = %q{A Spree connector to Alchemy CMS}
   gem.summary       = %q{Let Spree be your main site and dynamically inject content into your site via Alchemy}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/tesserakt/spree_alchemy"
   gem.license       = 'BSD New'
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")

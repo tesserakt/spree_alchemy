@@ -21,7 +21,7 @@ This version runs with Alchemy 3.0
 Add this line to your application's Gemfile:
 
     gem 'alchemy_cms', git: 'git@github.com:magiclabs/alchemy_cms.git'
-    gem 'spree-alchemy', git: 'git@github.com:tesserakt/spree_alchemy.git'
+    gem 'spree_alchemy', git: 'git@github.com:tesserakt/spree_alchemy.git'
 
 And then execute:
 

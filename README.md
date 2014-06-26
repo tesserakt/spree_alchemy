@@ -20,20 +20,29 @@ This version runs with Alchemy 3.0
 
 Add this line to your application's Gemfile:
 
-    gem 'alchemy_cms', git: 'git@github.com:magiclabs/alchemy_cms.git'
-    gem 'spree_alchemy', git: 'git@github.com:tesserakt/spree_alchemy.git'
+```ruby
+# Gemfile
+gem 'alchemy_cms', git: 'git@github.com:magiclabs/alchemy_cms.git'
+gem 'spree_alchemy', git: 'git@github.com:tesserakt/spree_alchemy.git'
+```
 
 And then execute:
 
-    $ bundle
+```shell
+$ bundle
+```
 
 Install the migrations:
 
-    $ rake spree_alchemy:install:migrations
+```shell
+$ rake spree_alchemy:install:migrations
+```
 
 Migrate the database:
 
-    $ rake db:migrate
+```shell
+$ rake db:migrate
+```
 
 ## Routes
 
@@ -42,20 +51,21 @@ If you have Alchemy generate any whole pages, you will want your main app to rou
 if you want an About Us page, you want to capture mysite.com/about-us and have alchemy take care of this.   This "catch all" route will
 need to be the last route in your routes.rb file
 
+```ruby
+# config/routes.rb
+mount Spree::Core::Engine, at: '/'
+mount Alchemy::Engine, at: '/cms'
 
-    mount Spree::Core::Engine, at: '/'
-    mount Alchemy::Engine, at: '/cms'
+# These routes get mounted last in your app!
+get '/:lang' => 'alchemy/pages#show',
+   :constraints => {:lang => /[a-z]{2}(-[a-z]{2})?/},
+   :as => :show_language_root
 
-    # These routes get mounted last in your app!
-    get '/:lang' => 'alchemy/pages#show',
-       :constraints => {:lang => /[a-z]{2}(-[a-z]{2})?/},
-       :as => :show_language_root
-
-    # The page show action has to be last route
-    get '(/:lang)/*urlname(.:format)' => 'alchemy/pages#show',
-        :constraints => {:lang => /[a-z]{2}(-[a-z]{2})?/},
-        :as => :show_page
-
+# The page show action has to be last route
+get '(/:lang)/*urlname(.:format)' => 'alchemy/pages#show',
+    :constraints => {:lang => /[a-z]{2}(-[a-z]{2})?/},
+    :as => :show_page
+```
 
 ## Usage
 
@@ -64,38 +74,47 @@ Once you have done this, you can add a decorator to the Spree Products controlle
 
 In your products controller show action decorator:
 
-    essence =  Alchemy::EssenceSpreeProduct.where(spree_product_id: @product.id).first
-    @page = essence.pages.first
+```ruby
+essence =  Alchemy::EssenceSpreeProduct.where(spree_product_id: @product.id).first
+@page = essence.pages.first
+```
 
 And in your view override or defacement:
 
-    <%= render_elements %>
+```ruby
+<%= render_elements %>
+```
 
 ### Create a new Element for Alchemy
 
-  # config/alchemy/elements.yml
-  - name: product
-    contents:
-    - name: spree_product
-      type: EssenceSpreeProduct
+```yaml
+# config/alchemy/elements.yml
+- name: product
+  contents:
+  - name: spree_product
+    type: EssenceSpreeProduct
 
-  - name: product_category
-    contents:
-    - name: spree_taxon
-      type: EssenceSpreeTaxon
-
+- name: product_category
+  contents:
+  - name: spree_taxon
+    type: EssenceSpreeTaxon
+```
 
 ### Ensure that a layout contains the product element type!
 in config/alchemy/page_layouts.yml
 
-    - name: product_content_page
-      cells: [slider]
-      elements: [video_slide, image_slide, content_block, call_to_action, product]
-      autogenerate: [video_slide, content_block, content_block, content_block, call_to_action]
+```yaml
+- name: product_content_page
+  cells: [slider]
+  elements: [video_slide, image_slide, content_block, call_to_action, product]
+  autogenerate: [video_slide, content_block, content_block, content_block, call_to_action]
+```
 
 ### Generate the views
 
-  $ rails g alchemy:elements --skip
+```shell
+$ rails g alchemy:elements --skip
+```
 
 ### TODO
 

@@ -10,7 +10,7 @@ Use this connector if you want to have Spree handle the frontend of your app, bu
 
 ## Spree
 
-This version runs with Spreecommerce 2.2. I want to get this gem on semantic versioning soon.
+This version runs with Spreecommerce 2.2.
 
 ## Alchemy
 

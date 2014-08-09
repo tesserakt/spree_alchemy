@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = Spree::Alchemy::VERSION
 
   gem.add_dependency('alchemy_cms', ['~> 3.0.0'])
-  gem.add_dependency('spree', ['>= 2.1', '< 3.0'])
+  gem.add_dependency('spree', ['>= 2.3', '< 3.0'])
 end

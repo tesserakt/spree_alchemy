@@ -10,7 +10,7 @@ Use this connector if you want to have Spree handle the frontend of your app, bu
 
 ## Spree
 
-This version runs with Spreecommerce 2.2.
+This version runs with Spreecommerce 2.3.
 
 ## Alchemy
 

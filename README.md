@@ -44,7 +44,14 @@ Migrate the database:
 $ rake db:migrate
 ```
 
-## Routes
+## Installation parts needed to be done manually
+In your application_controller.rb, put the following code:
+```ruby
+  def current_user
+    spree_current_user
+  end
+```
+
 
 In your main app's routes.rb file you will need to mount Spree at the root '/'. We also like to mount Alchemy at /cms.
 If you have Alchemy generate any whole pages, you will want your main app to route any unknown routes to Alchemy. For example,
